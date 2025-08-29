@@ -1,25 +1,33 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Documentação Técnica",
+  "name": "Jack Vartanian - Doc",
   "colors": { "primary": "#0c4c7d" },
+  "favicon": "/favicon.jpg",
   "navigation": {
     "groups": [
       {
         "group": "Visão Geral",
-        "pages": ["index"]
+        "pages": ["sidebarMenu/overview/inicio"]
       },
       {
-        "group": "Rotas",
-        "pages": ["routes/customers", "routes/orders"]
-      },
-      {
-        "group": "Funções",
-        "pages": ["functions/generateReport", "functions/sendEmail"]
+        "group": "Infraestrutura",
+        "pages": [
+          "sidebarMenu/infra/hostinger",
+          "sidebarMenu/infra/contabo",
+          "sidebarMenu/infra/goDaddy",
+          "sidebarMenu/infra/ftp",
+          "sidebarMenu/infra/supabase"
+        ]
       },
       {
         "group": "Workflows n8n",
-        "pages": ["n8n-workflows/newCustomer", "n8n-workflows/saleFlow"]
+        "pages": [
+          {
+            "group": "Asana",
+            "pages": ["sidebarMenu/n8n-workflows/automacaoTasksAsana"]
+          }
+        ]
       }
     ]
   }

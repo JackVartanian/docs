@@ -1,0 +1,22 @@
+---
+sidebarTitle: "Hostinger"
+---
+
+- Temos uma VPS da Hostinger (KVM 4):
+  - 4 núcleos de vCPU
+  - 16 GB de RAM
+  - 200 GB de disco NVMe
+  - 16 TB de largura de banda
+
+## Estrutura
+
+- Temos os seguintes serviços rodando no Docker:
+  - Traefik
+    - Gerencia certificados e roteamento das aplicações (Proxy Reverso).
+  - N8N
+    - Sistema low code para automações.
+  - Evolution API
+    - Plataforma intermediaria para utilizar o WhatsApp nos projetos.
+    - Esse serviço utiliza os seguintes serviços para auxilio:
+      - Redis
+      - Postgres

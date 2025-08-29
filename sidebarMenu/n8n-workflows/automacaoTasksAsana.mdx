@@ -1,0 +1,86 @@
+---
+title: "Workflow — Gerar Tasks da Reunião (FireFiles → n8n → Supabase/Asana)"
+sidebarTitle: "Gerar Tasks da Reunião"
+---
+
+import { ImageCarousel } from "/snippets/ImageCarousel.jsx";
+
+<Info>FireFiles → n8n → Supabase/Asana</Info>
+
+<Info>
+  Este workflow automatiza o pós-reunião: transforma a transcrição do FireFiles
+  em *tasks* no Supabase e Asana e envia notificações no WhatsApp.
+</Info>
+
+## Detalhes
+
+- Após reunião o vídeo é processado pelo FireFiles, onde será transcrito e gerado as taks.
+- Assim que o FireFiles enviar o evento no webhook temos acesso ao id da transcrição.
+- Com isso buscamos os detalhes desssa reunião pela API do FireFiles e obtemos as tarefas.
+- Utiizamos um Agente IA para pegar cada tarefa criada e salvar no Supabase.
+- Também geramos essas tarefas no Asana, atribuindo usuário, data de conclusão, título e descrição para cada tarefa.
+
+## Observações
+
+- Notificações são enviadas pelo WhatsApp.
+- Processamento do vídeo acontece no FireFiles.
+- Todo início de reunião, os participantes devem ser adicionados na reunião.
+
+## Triggers
+
+- WebHook
+- Chat
+
+## Fluxo
+
+- **WebHook**: FireFiles envia o evento assim que o vídeo da reunião for processado.
+- **Chat**: Caso houver necessidade, basta digitar no chat o id da reunião para gerar as tasks no Asana e no Supabase.
+
+- **Edit**: Obtem o valor do id da transcrição do chat ou do webhook
+- **Wait**: Aguarda durante 1 minuto, pois pode acontecer da transcrição ser processada porém as tarefas ainda não.
+- **HTTP Request**: Busca detalhes da transcrição pela API do FireFiles.
+- **Validações**:
+  - Valida se deu certo a requisição
+  - Valida se o resumo está vazio ou null
+  - Valida se teve participantes na reunião
+- **Validação**: Valida o status das tarefas, caso as tarefas estiverem no processo de processamento no FireFiles, o fluxo aguarda 2 minutos e busca novamente os detalhes da transcrição até as terefas ficarem prontas.
+- **HTTP Request**: Busca os usuários da equipe no Asana
+- **Edit**: Filtra dos dados para a continuação do fluxo
+- **AI Agent**: Analisa as terefa e cria registros na tabela asana_tasks no Supabase
+- **Supabase**: Busca os registros criados, filtrando pelas colunas transcript_id e was_created_in_asana
+- **If**: Verifica se o node anterior buscou as tarefas do banco
+- **HTTP Request**: Cria seção dentro do projeto no Asana
+- **Code**: Esse node tem somente a função de buscar as tarefas e deixar como array para prosseguir no loop
+- **Loop**: Processa uma tarefa por vez.
+- **AI Agent**: Esse agente tem com função relacionar os e-mails dos partipantes do FireFiles com os os usuários do Asana
+- **Edit**: Mapeia os dados do node anterior
+- **If**: Valida se o agente conseguiu relacionar os emails com os usuários do Asana.
+  - Caso o agente não ter conseguido relacionar os usuários com os emails, uma notificação é enviada e o fluxo continua para a próxima interação no loop
+- **HTTP Request**: Cria task dentro de uma seção no Asana.
+- **Supabase**: Atualiza registros no banco de dados e retorna para o loop.
+
+- No fim do fluxo uma notificação é enviada.
+
+## Imagens
+
+<ImageCarousel
+  initialIndex={1}
+  showCaptions={true}
+  images={[
+    {
+      src: "/images/n8n/automacaoTasksAsana/image1.png",
+      alt: "Workflow",
+      caption: "Workflow parte 1",
+    },
+    {
+      src: "/images/n8n/automacaoTasksAsana/image2.png",
+      alt: "Workflow",
+      caption: "Workflow parte 2",
+    },
+    {
+      src: "/images/n8n/automacaoTasksAsana/image3.png",
+      alt: "Workflow",
+      caption: "Workflow parte 3",
+    },
+  ]}
+/>
