@@ -1,0 +1,30 @@
+---
+
+### 4) Páginas de **Funções**
+
+Exemplo: `docs/funcoes/gerarRelatorio.mdx`
+
+````mdx
+# Função: gerarRelatorio(dataInicio, dataFim, formato = "pdf")
+
+## Propósito
+
+Gera um relatório consolidado por período.
+
+## Parâmetros
+
+- `dataInicio` _(string | Date)_ — ISO ou Date
+- `dataFim` _(string | Date)_ — ISO ou Date
+- `formato` _(string, opcional)_ — `"pdf"` | `"xlsx"` (default: `"pdf"`)
+
+## Retorno
+
+- `Promise<Buffer>` — arquivo gerado
+
+## Exemplo de uso
+
+```ts
+const buf = await gerarRelatorio("2025-01-01", "2025-01-31", "pdf");
+// salvar em disco, enviar por e-mail, etc.
+```
+````

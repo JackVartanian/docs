@@ -1,36 +1,30 @@
 {
-  "$schema": "https://mintlify.com/docs.json",
-  "theme": "mint",
-  "name": "Mint Starter Kit",
-  "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
-  },
-  "favicon": "/favicon.svg",
-  "navigation": {
-    "tabs": [
-      {
-        "tab": "Guides",
-        "groups": []
-      },
-      {
-        "tab": "API reference",
-        "groups": []
-      }
-    ],
-    "global": {
-      "anchors": []
+  "name": "Documentação Técnica",
+  "navigation": [
+    {
+      "group": "Visão Geral",
+      "pages": [{ "name": "Início", "path": "/" }]
+    },
+    {
+      "group": "Rotas",
+      "pages": [
+        { "name": "Clientes (POST /customers)", "path": "/routes/customers" },
+        { "name": "Pedidos (GET /orders)", "path": "/routes/orders" }
+      ]
+    },
+    {
+      "group": "Funções",
+      "pages": [
+        { "name": "generateReport()", "path": "/functions/generateReport" },
+        { "name": "sendEmail()", "path": "/functions/sendEmail" }
+      ]
+    },
+    {
+      "group": "Workflows n8n",
+      "pages": [
+        { "name": "Cadastro de Cliente", "path": "/n8n-workflows/newCustomer" },
+        { "name": "Fluxo de Pedidos", "path": "/workflows-n8n/saleFlow" }
+      ]
     }
-  },
-  "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
-  },
-  "navbar": {
-    "links": []
-  },
-  "contextual": {
-    "options": []
-  }
+  ]
 }
