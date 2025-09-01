@@ -8,14 +8,15 @@ import { ImageCarousel } from "/snippets/ImageCarousel.jsx";
 <Info>Asana → n8n → WhatsApp</Info>
 
 <Info>
-  Este workflow é executado uma vez ao dia, onde se obtem as tarefas do Asana e
-  envia notificações pelo WhatsApp para cada usuário relacionado com as tarefas.
+  Este workflow é executado uma vez ao dia, onde se obtem as tarefas incompletas
+  do Asana e envia notificações pelo WhatsApp para cada usuário relacionado com
+  as tarefas.
 </Info>
 
 ## Detalhes
 
-- Todo dia as 7 da manhã o sistema busca as tarefas no Asana.
-- Depois as terefas são filtradas para obter somente as tarefas do dia atual.
+- Todo dia as 7 da manhã o sistema busca as tarefas incompletas no Asana.
+- Depois as tarefas são filtradas para obter somente as tarefas com data de conclusão igual ao dia atual.
 - Após isso uma mensagem é criada e enviada para cada usuário pelo WhatsApp.
 
 ## Triggers
