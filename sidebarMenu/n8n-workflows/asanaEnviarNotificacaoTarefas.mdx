@@ -1,0 +1,62 @@
+---
+title: "Workflow: Asana - Enviar Notificacao Tarefas (Asana → n8n → WhatsApp)"
+sidebarTitle: "Enviar Notificacao Tarefas"
+---
+
+import { ImageCarousel } from "/snippets/ImageCarousel.jsx";
+
+<Info>Asana → n8n → WhatsApp</Info>
+
+<Info>
+  Este workflow é executado uma vez ao dia, onde se obtem as tarefas do Asana e
+  envia notificações pelo WhatsApp para cada usuário relacionado com as tarefas.
+</Info>
+
+## Detalhes
+
+- Todo dia as 7 da manhã o sistema busca as tarefas no Asana.
+- Depois as terefas são filtradas para obter somente as tarefas do dia atual.
+- Após isso uma mensagem é criada e enviada para cada usuário pelo WhatsApp.
+
+## Triggers
+
+- Schedule
+
+## Fluxo
+
+- **Schedule**: As 7 da amnhã o fluxo é executado.
+
+- **Asana**: Obtem tarefas do Asana
+- **If**: Valida se o array de tarefas não está vazio
+- **Filter**: Filtra as tarefas do dia
+- **Code**: Inicia variavel global
+- **Loop**: Interage em uma tarefa por vez
+- **Code**: Organiza as tarefas de acordo com o usuário
+- **Code**: Após o termino do loop obtem o array de tarefas
+- **Loop**: Processa um usuário de cada vez
+- **Edit**: Obtem as tarefas desse usuário
+- **Code**: Cria mensagem para o WhatsApp com base nas tarefas
+- **Supabase**: Busca celular do usuário
+- **Code**: Por enquanto cria template email
+- **Gmail**: Envia email.
+
+- No fim do fluxo uma notificação é enviada.
+
+## Imagens
+
+<ImageCarousel
+  initialIndex={1}
+  showCaptions={true}
+  images={[
+    {
+      src: "/images/n8n/asanaEnviarNotificacaoTarefas/image1.png",
+      alt: "Workflow",
+      caption: "Workflow parte 1",
+    },
+    {
+      src: "/images/n8n/asanaEnviarNotificacaoTarefas/image2.png",
+      alt: "Workflow",
+      caption: "Workflow parte 2",
+    },
+  ]}
+/>

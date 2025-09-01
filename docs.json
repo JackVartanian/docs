@@ -25,7 +25,10 @@
         "pages": [
           {
             "group": "Asana",
-            "pages": ["sidebarMenu/n8n-workflows/automacaoTasksAsana"]
+            "pages": [
+              "sidebarMenu/n8n-workflows/asanaCriarTarefasReuniao",
+              "sidebarMenu/n8n-workflows/asanaEnviarNotificacaoTarefas"
+            ]
           }
         ]
       }
