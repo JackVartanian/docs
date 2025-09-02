@@ -24,7 +24,8 @@ import { ImageCarousel } from "/snippets/ImageCarousel.jsx";
 
 - Notificações são enviadas pelo WhatsApp.
 - Processamento do vídeo acontece no FireFiles.
-- Todo início de reunião, os participantes devem ser adicionados na reunião.
+- As tarefas podem ser atribuidas a um funcionário ou não.
+- As tarefas são atribuidas somente para alguem que tenha registro na tabela company_users no Supabase.
 
 ## Triggers
 
@@ -42,10 +43,10 @@ import { ImageCarousel } from "/snippets/ImageCarousel.jsx";
 - **Validações**:
   - Valida se deu certo a requisição
   - Valida se o resumo está vazio ou null
-  - Valida se teve participantes na reunião
 - **Validação**: Valida o status das tarefas, caso as tarefas estiverem no processo de processamento no FireFiles, o fluxo aguarda 2 minutos e busca novamente os detalhes da transcrição até as terefas ficarem prontas.
-- **HTTP Request**: Busca os usuários da equipe no Asana
+- **Supabase**: Busca detalhes dos funcionários da empresa
 - **Edit**: Filtra dos dados para a continuação do fluxo
+- **Code**: Formata as tarefas e coloca em um array
 - **AI Agent**: Analisa as terefa e cria registros na tabela asana_tasks no Supabase
 - **Supabase**: Busca os registros criados, filtrando pelas colunas transcript_id e was_created_in_asana
 - **If**: Verifica se o node anterior buscou as tarefas do banco
