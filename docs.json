@@ -13,11 +13,12 @@
       {
         "group": "Infraestrutura",
         "pages": [
-          "sidebarMenu/infra/hostinger",
-          "sidebarMenu/infra/contabo",
           "sidebarMenu/infra/goDaddy",
+          "sidebarMenu/infra/vpn",
           "sidebarMenu/infra/ftp",
-          "sidebarMenu/infra/supabase"
+          "sidebarMenu/infra/hostinger",
+          "sidebarMenu/infra/supabase",
+          "sidebarMenu/infra/contabo"
         ]
       },
       {

@@ -1,0 +1,19 @@
+---
+title: "VPN"
+sidebarTitle: "VPN"
+---
+
+## Responsável
+
+- Empresa Capsula cuida dessa parte de redes da empresa.
+
+## Fluxo
+
+- A VPN é responsável por conectar a rede interna da empresa com o data center do CaptaERP.
+- Utilizamos a rede da Vivo e Claro. As redes ficam trocando uma com a outra caso apresentem instabilidades.
+- A conexão com o data center da Capta só cai quando ambas as redes estão fora do ar.
+- Basicamente para que os scripts em Python e os dashboards com Power BI consumam os dados do banco de dados do ERP Capta é necessário que a VPN conecte todos esses ambientes por questões de segurança.
+- Entao a VPN tem o papel de criar uma comunicação entre todos os ambiente necessários e quem é responsável por essa estrutura é a empresa Capsula.
+- Com esse ambiente configurado, os script conseguem se conectar no ip do data center e rodar queries SQL para obter os dados e criar arquivos em Excel com os dados do Capta.
+- Com os dados do Capta no Excel, utilizamos o FTP para compartilhar esses arquivos com os computadores da empresa.
+- O Power BI por exemplo utiliza esses arquivos para gerar os dashboards.
