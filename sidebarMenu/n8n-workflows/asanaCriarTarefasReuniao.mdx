@@ -42,8 +42,11 @@ import { ImageCarousel } from "/snippets/ImageCarousel.jsx";
 - **HTTP Request**: Busca detalhes da transcrição pela API do FireFiles.
 - **Validações**:
   - Valida se deu certo a requisição
-  - Valida o status das tarefas, caso as tarefas estiverem no processo de processamento no FireFiles, o fluxo aguarda 2 minutos e busca novamente os detalhes da transcrição até as terefas ficarem prontas.
+  - Valida o status das tarefas
   - Valida se realmente foi gerado um resumo
+    - Caso as tarefas estiverem no processo de processamento no FireFiles, o fluxo aguarda 2 minutos e busca novamente os detalhes da transcrição até as terefas ficarem prontas.
+  - Valida se o erro é de transcript not found
+    - Por algum motivo as vezes o FireFiles envia o evento dizendo que a transcrição foi feita, mas ela não está disponível na busca da api ainda, nesse caso também cai no loop de aguardar 2 minutos e tentar buscar novamente.
 - **Supabase**: Busca detalhes dos funcionários da empresa
 - **Edit**: Filtra dos dados para a continuação do fluxo
 - **Code**: Formata as tarefas e coloca em um array
