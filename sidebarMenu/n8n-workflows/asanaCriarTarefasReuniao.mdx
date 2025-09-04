@@ -42,21 +42,18 @@ import { ImageCarousel } from "/snippets/ImageCarousel.jsx";
 - **HTTP Request**: Busca detalhes da transcrição pela API do FireFiles.
 - **Validações**:
   - Valida se deu certo a requisição
-  - Valida se o resumo está vazio ou null
-- **Validação**: Valida o status das tarefas, caso as tarefas estiverem no processo de processamento no FireFiles, o fluxo aguarda 2 minutos e busca novamente os detalhes da transcrição até as terefas ficarem prontas.
+  - Valida o status das tarefas, caso as tarefas estiverem no processo de processamento no FireFiles, o fluxo aguarda 2 minutos e busca novamente os detalhes da transcrição até as terefas ficarem prontas.
+  - Valida se realmente foi gerado um resumo
 - **Supabase**: Busca detalhes dos funcionários da empresa
 - **Edit**: Filtra dos dados para a continuação do fluxo
 - **Code**: Formata as tarefas e coloca em um array
-- **AI Agent**: Analisa as terefa e cria registros na tabela asana_tasks no Supabase
+- **AI Agent**: Analisa as tarefa e cria registros na tabela asana_tasks no Supabase
 - **Supabase**: Busca os registros criados, filtrando pelas colunas transcript_id e was_created_in_asana
 - **If**: Verifica se o node anterior buscou as tarefas do banco
 - **HTTP Request**: Cria seção dentro do projeto no Asana
 - **Code**: Esse node tem somente a função de buscar as tarefas e deixar como array para prosseguir no loop
 - **Loop**: Processa uma tarefa por vez.
-- **AI Agent**: Esse agente tem com função relacionar os e-mails dos partipantes do FireFiles com os os usuários do Asana
 - **Edit**: Mapeia os dados do node anterior
-- **If**: Valida se o agente conseguiu relacionar os emails com os usuários do Asana.
-  - Caso o agente não ter conseguido relacionar os usuários com os emails, uma notificação é enviada e o fluxo continua para a próxima interação no loop
 - **HTTP Request**: Cria task dentro de uma seção no Asana.
 - **Supabase**: Atualiza registros no banco de dados e retorna para o loop.
 
