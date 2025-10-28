@@ -1,0 +1,56 @@
+---
+title: "Workflow: EnviaMensagemCarrinhoAbandonadoShopifyPrimeiraMensagem (Supabase → FreshChat)"
+sidebarTitle: "Envia Template Carrinho Abandonado Para Cliente"
+---
+
+import { ImageCarousel } from "/snippets/ImageCarousel.jsx";
+
+<Info>Supabase → FreshChat</Info>
+
+<Info>
+  Este workflow tem como função enviar um template do Meta de carrinho
+  abandonado para o cliente
+</Info>
+
+## Detalhes
+
+- A cada 10 minutos o fluxo é iniciado.
+- Obtem um array de carrinhos abandonados do Supabse que foram abandonados a 1 hora atras.
+- Loop no array.
+- Envia template para o cliente.
+- Atualiza a coluna times_message_sent desse carrinho no banco, pois assim temos um controle para futuramente criarmos um pipeline para acompanhamento desses clientes no Fresh.
+- Aguarda 30 segundos.
+- Ao final do loop uma mensagem é enviada no grupo do WhatsApp Gestor CRM AI Agente N8N.
+
+## Triggers
+
+- Schedule
+- Manual
+
+## Fluxo
+
+- **Schedule**: A cada 20 minutos o fluxo roda
+- **Manual**: Ativa o fluxo manualmente
+
+- **Supabase**: Busca carrinhos abandonados no Supabse que foram criados a pelo menos 1 hora e com o valor 0 na coluna times_message_sent
+- **Loop**: Processa um carrinho de cada vez
+- **HTTP Request**: Envia o template do Meta 'carrinho_abandonado_dois' com as informações do carrinho abandonado para o cliente no WhatsApp
+- **Supabase**: Atualiza a coluna times_message_sent para 1
+- **Wait**: Aguarda 30 segundos
+- Processa o próximo item do array
+- Final do loop
+- **HTTP Request**: Envia mensagem no grupo do WhatsApp Gestor CRM AI Agente N8N
+
+## Imagens
+
+<ImageCarousel
+  initialIndex={0}
+  showCaptions={true}
+  images={[
+    {
+      src: "/images/n8n/shopify/EnviaMensagemCarrinhoAbandonadoShopifyPrimeiraMensagem/image01.png",
+      alt: "Workflow",
+      caption: "Fluxo completo",
+    },
+  ]}
+/>

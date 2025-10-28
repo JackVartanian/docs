@@ -25,10 +25,10 @@
         "group": "Workflows n8n",
         "pages": [
           {
-            "group": "Asana",
+            "group": "Shopify",
             "pages": [
-              "sidebarMenu/n8n-workflows/asanaCriarTarefasReuniao",
-              "sidebarMenu/n8n-workflows/asanaEnviarNotificacaoTarefas"
+              "sidebarMenu/n8n-workflows/shopify/BuscaCarrinhoAbandonadoShopify",
+              "sidebarMenu/n8n-workflows/shopify/EnviaMensagemCarrinhoAbandonadoShopifyPrimeiraMensagem"
             ]
           }
         ]

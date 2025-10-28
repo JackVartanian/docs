@@ -1,0 +1,66 @@
+---
+title: "Workflow: BuscaCarrinhoAbandonadoShopify (Shopify → n8n → Supabase)"
+sidebarTitle: "Busca Carrinhos Abandonados No Shopify"
+---
+
+import { ImageCarousel } from "/snippets/ImageCarousel.jsx";
+
+<Info>Shopify → n8n → Supabase</Info>
+
+<Info>
+  Este workflow tem como função buscar os carrinhos abandonados no Shopify e
+  salvar no Supabase.
+</Info>
+
+## Detalhes
+
+- A cada 20 minutos o fluxo é iniciado.
+- Obtem um array de carrinhos abandonados do Shopify do dia atual.
+- Loop no array.
+- Mapeia os dados de cada carrinho.
+- Valida se o cliente digitou o celular dele no carrinho.
+- Caso não, encerra o fluxo.
+- Busca dados dos produtos do carrinho.
+- Verifica se no banco já não existe o registro desse carrinho.
+- Se não tiver, cria o registro no Supabse.
+
+## Triggers
+
+- Schedule
+- Manual
+
+## Fluxo
+
+- **Schedule**: A cada 20 minutos o fluxo roda
+- **Manual**: Ativa o fluxo manualmente
+
+- **HTTP Request**: Busca carrinhos abandonados no Shopify
+- **Code**: Pega os dados e retorna um array para o percorrer no Loop
+- **Loop**: Processa um carrinho por vez
+- **Edit**: Mapeia os dados do carrinho
+- **Code**: Verifica qual produto do carrinho é mais caro e retorna um objeto com informações do carrinho
+- **If**: Valida se não existe celular do cliente
+- **If (TRUE)**: Encerra o fluxo
+- **If (FALSE)**: Continua
+- **HTTP Request**: Busca dados do produto mais caro
+- **Edit**: Obtem a imagem do produto
+- **Supabase**: Busca carrinho id no banco de dados Supabase
+- **If**: Valida se não existe
+- **If (FALSE)**: Encerra o fluxo
+- **If (TRUE)**: Continua
+- **Supabase**: Cria registro no banco de dados Supabase
+- Passa para o próximo item do loop
+
+## Imagens
+
+<ImageCarousel
+  initialIndex={0}
+  showCaptions={true}
+  images={[
+    {
+      src: "/images/n8n/shopify/BuscaCarrinhoAbandonadoShopify/image01.png",
+      alt: "Workflow",
+      caption: "Fluxo completo",
+    },
+  ]}
+/>
