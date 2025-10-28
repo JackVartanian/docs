@@ -34,6 +34,10 @@
         ]
       },
       {
+        "group": "Certificado SSL",
+        "pages": ["sidebarMenu/certificadoSSL/atualizacaoCertifcadoSSL"]
+      },
+      {
         "group": "Consultoras",
         "pages": ["sidebarMenu/consultoras/atualizacaoDeMetas"]
       }

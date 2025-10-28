@@ -1,0 +1,67 @@
+---
+title: "Atualização Certificado SSL"
+sidebarTitle: "Atualização"
+---
+
+import { ImageCarousel } from "/snippets/ImageCarousel.jsx";
+
+<Info>Guia para atualizar o certificado SSL do sistema</Info>
+
+A cada 3 meses o certificado expira e um novo deve ser colocado no lugar, essa página mostra o passo a passo para isso
+
+OBS.: Utilize as imagens para melhor entendimento
+
+## Guia
+
+- Quando o certificado estiver perto de ser expirado, um e-mail será enviado avisando para ser renovado.
+- O certificado deve ser gerado na plataforma ZeroSSL
+  - Os dados de login estão na Planilha
+  - Os redirecionamentos já estão feitos, basta gerar o certificado
+- Depois de gerado baixe os arquivos
+- Acessar a GoDaddy
+- Acessar o menu Meu produtos
+- Clicar em Gerenciar em Hospedagem de site
+- Clicar em Administrador cPanel
+- Ir no menu Segurança e clicar em SSL/TLS
+- Clicar em INSTALAR E GERENCIAR SSL PARA SEU SITE (HTTPS)
+- Depois clicar em Atualizar certificado
+- No proximo menu é só copiar e colcar o conteúdo dos três arquivos que foi gerado no ZeroSSL nos inputs correspondentes.
+
+## Imagens
+
+<ImageCarousel
+  initialIndex={0}
+  showCaptions={true}
+  images={[
+    {
+      src: "/images/certificadoSSL/image01.png",
+      alt: "GoDaddy",
+      caption: "GoDaddy",
+    },
+    {
+      src: "/images/certificadoSSL/image02.png",
+      alt: "Menu GoDaddy",
+      caption: "Menu GoDaddy",
+    },
+    {
+      src: "/images/certificadoSSL/image03.png",
+      alt: "Botao cPanel",
+      caption: "Botao cPanel",
+    },
+    {
+      src: "/images/certificadoSSL/image04.png",
+      alt: "Menu SSL",
+      caption: "Menu SSL",
+    },
+    {
+      src: "/images/certificadoSSL/image05.png",
+      alt: "Instalar SSL",
+      caption: "Instalar SSL",
+    },
+    {
+      src: "/images/certificadoSSL/image06.png",
+      alt: "Atualizar Certificado",
+      caption: "Atualizar Certificado",
+    },
+  ]}
+/>
