@@ -32,6 +32,10 @@
             ]
           }
         ]
+      },
+      {
+        "group": "Consultoras",
+        "pages": ["sidebarMenu/consultoras/atualizacaoDeMetas"]
       }
     ]
   }
