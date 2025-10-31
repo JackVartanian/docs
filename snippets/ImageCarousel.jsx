@@ -5,6 +5,7 @@ export const ImageCarousel = ({
   images = [],
   initialIndex = 0,
   showCaptions = true,
+  showPreviews = true,
   className = "",
   thumbClass = "h-16 w-24 object-cover",
 }) => {
@@ -90,26 +91,28 @@ export const ImageCarousel = ({
       )}
 
       {/* MINIATURAS */}
-      <div className="mt-3 flex items-center gap-2 overflow-x-auto">
-        {images.map((img, i) => (
-          <button
-            key={i}
-            type="button"
-            onClick={() => goTo(i)}
-            ref={(el) => (thumbsRef.current[i] = el)}
-            className={`shrink-0 rounded-lg transition `}
-            aria-label={`Ver imagem ${i + 1}`}
-            style={{ borderBottom: idx === i ? "3px solid blue" : "none" }}
-          >
-            <img
-              src={img.src}
-              alt={img.alt || ""}
-              className={`block rounded-lg ${thumbClass}`}
-              loading="lazy"
-            />
-          </button>
-        ))}
-      </div>
+      {showPreviews && (
+        <div className="mt-3 flex items-center gap-2 overflow-x-auto">
+          {images.map((img, i) => (
+            <button
+              key={i}
+              type="button"
+              onClick={() => goTo(i)}
+              ref={(el) => (thumbsRef.current[i] = el)}
+              className={`shrink-0 rounded-lg transition `}
+              aria-label={`Ver imagem ${i + 1}`}
+              style={{ borderBottom: idx === i ? "3px solid blue" : "none" }}
+            >
+              <img
+                src={img.src}
+                alt={img.alt || ""}
+                className={`block rounded-lg ${thumbClass}`}
+                loading="lazy"
+              />
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

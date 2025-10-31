@@ -1,0 +1,72 @@
+---
+title: "Workflow: agentAIWebHookRetornaMensagens GrupoOuIndividual"
+sidebarTitle: "AI Agent WhatsApp"
+---
+
+import { ImageCarousel } from "/snippets/ImageCarousel.jsx";
+
+<Info>WhatsApp → n8n → WhatsApp</Info>
+
+<Info>
+  Este workflow tem como função responder mensagens do WhatsApp utilizando Ai
+  Agent
+</Info>
+
+## Detalhes
+
+- Webhook escuta evento de mensagem no privado ou no grupo do WhatsApp.
+- Depois tem a validação para saber se foi mensagem do próprio agente ou não.
+- Caso não for o fluxo continua.
+- Busca sessão no cache
+- Caso encontrar continua conversa, caso não houver cria a sessão no cache
+- Com a sessão atualizada ele busca o histórico da conversa
+- Com o histórico a mensgaem é analisada e uma resposta é gerada pelo chatGpt
+- Atualiza histórico da conversa
+- Responde o usuário no WhatsApp
+
+- Tem um número de celular exclusivo para o AI Agent
+- Utilizamos EvolutionAPI V1 para envio de mensagens
+
+- Foram criadas duas ferramentas para o Agente buscar dados do cliente no Fresh
+
+- Para acessar a API que controla o cache é necessário um token de validação no padrão:
+  - Authorization: Bearer token
+- API do cache está hospedada na Hostinger
+- Envio de mensagem no WhatsApp através do Evolution API
+
+## Triggers
+
+- Webhook
+
+## Fluxo
+
+- **Webhook**: Escuta o evento de mensagem do WhatsApp em conversa privada ou em grupos
+
+- **Edit**: Mapeia os dados do Webhook
+- **If**: Verifica se foi mensagem do próprio Agente
+- **If (TRUE)**: Encerra o fluxo
+- **If (FALSE)**: Continua
+- **HTTP Request**: Busca sessão da conversa no cache
+- **If**: Valida se existe sessão no cache
+- **If (TRUE)**: Atualiza sessão no cache com mensagem do usuário
+- **If (FALSE)**: Cria sessão no cache
+- **HTTP Request**: Busca historico de conversas
+- **Agent AI**: Analisa conversa e utiliza ferramentas para melhor responder o usuário
+- **Tool 1**: Busca informações do cliente pelo celular dele
+- **Tool 2**: Busca informações do cliente pelo ID dele
+- **HTTP Request**: Atualiza sessão da conversa no cache com resposta do Agente
+- **HTTP Request**: Envia mensagem de resposta para o usuário no WhatsApp
+
+## Imagens
+
+<ImageCarousel
+  initialIndex={0}
+  showCaptions={true}
+  images={[
+    {
+      src: "/images/n8n/AIAgent/agentAIWebHookRetornaMensagensGrupoOuIndividual/image01.png",
+      alt: "Workflow",
+      caption: "Fluxo completo",
+    },
+  ]}
+/>

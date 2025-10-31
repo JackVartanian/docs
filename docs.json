@@ -31,6 +31,12 @@
               "sidebarMenu/n8n-workflows/shopify/enviaMensagemCarrinhoAbandonadoShopifyPrimeiraMensagem",
               "sidebarMenu/n8n-workflows/shopify/vendaShopifyCriaDealNoFresh"
             ]
+          },
+          {
+            "group": "AI Agent",
+            "pages": [
+              "sidebarMenu/n8n-workflows/AIAgent/agentAIWebHookRetornaMensagensGrupoOuIndividual"
+            ]
           }
         ]
       },
