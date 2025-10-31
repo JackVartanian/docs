@@ -59,22 +59,26 @@ export const ImageCarousel = ({
         />
 
         {/* SETAS */}
-        <button
-          type="button"
-          onClick={() => go(-1)}
-          className="absolute left-2 top-1/2 -translate-y-1/2 bg-blue/80 hover:bg-white border rounded-full px-3 py-2 shadow"
-          aria-label="Anterior"
-        >
-          ‹
-        </button>
-        <button
-          type="button"
-          onClick={() => go(1)}
-          className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white border rounded-full px-3 py-2 shadow"
-          aria-label="Próximo"
-        >
-          ›
-        </button>
+        {images?.length > 1 && (
+          <>
+            <button
+              type="button"
+              onClick={() => go(-1)}
+              className="absolute left-2 top-1/2 -translate-y-1/2 bg-blue/80 hover:bg-white border rounded-full px-3 py-2 shadow"
+              aria-label="Anterior"
+            >
+              ‹
+            </button>
+            <button
+              type="button"
+              onClick={() => go(1)}
+              className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white border rounded-full px-3 py-2 shadow"
+              aria-label="Próximo"
+            >
+              ›
+            </button>
+          </>
+        )}
       </div>
 
       {/* LEGENDA */}
