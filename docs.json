@@ -28,7 +28,8 @@
             "group": "Shopify",
             "pages": [
               "sidebarMenu/n8n-workflows/shopify/buscaCarrinhoAbandonadoShopify",
-              "sidebarMenu/n8n-workflows/shopify/enviaMensagemCarrinhoAbandonadoShopifyPrimeiraMensagem"
+              "sidebarMenu/n8n-workflows/shopify/enviaMensagemCarrinhoAbandonadoShopifyPrimeiraMensagem",
+              "sidebarMenu/n8n-workflows/shopify/vendaShopifyCriaDealNoFresh"
             ]
           }
         ]

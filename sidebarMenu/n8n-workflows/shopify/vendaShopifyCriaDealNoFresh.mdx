@@ -1,0 +1,49 @@
+---
+title: "Workflow: AutomacaoFreshShopify - DEAL - CriaCardPipelineAposVendaShopify"
+sidebarTitle: "Cria Deal no Fresh Após Venda No Shopify"
+---
+
+import { ImageCarousel } from "/snippets/ImageCarousel.jsx";
+
+<Info>Shopify → n8n → Fresh</Info>
+
+<Info>
+  Este workflow tem como função subir cards no pipeline do Fresh 'CRM Shopify
+  Ecommerce'
+</Info>
+
+## Detalhes
+
+- Webhook escuta o evento de venda do Shopify.
+- Os dados são mapeados.
+- Busca informações do cliente no Fresh.
+- Caso exista cadastro no Fresh cria Card no pipeline do Fresh.
+
+## Triggers
+
+- Webhook
+
+## Fluxo
+
+- **Webhook**: Escuta o evento de venda do Shopify
+- **Code**: Mapeia os dados do evento
+- **HTTP Request**: Busca contato do cliente no Fresh
+- **If**: Valida se existe cadastro do cliente no Fresh
+- **If (FALSE)**: Encerra o fluxo
+- **If (TRUE)**: Continua
+- **Code**: Cria objeto para criar deal no pipeline do Fresh
+- **HTTP Request**: Cria deal no Fresh no pipeline 'CRM Shopify Ecommerce'
+
+## Imagens
+
+<ImageCarousel
+  initialIndex={0}
+  showCaptions={true}
+  images={[
+    {
+      src: "/images/n8n/shopify/vendaShopifyCriaDealNoFresh/image01.png",
+      alt: "Workflow",
+      caption: "Fluxo completo",
+    },
+  ]}
+/>
